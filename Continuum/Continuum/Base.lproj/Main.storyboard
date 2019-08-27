@@ -90,7 +90,7 @@
                                     <outlet property="captionLabel" destination="NF8-WA-Rnw" id="A2p-o1-IeY"/>
                                     <outlet property="numberOfCommentsLabel" destination="wKu-8E-D9T" id="KZS-4b-fT6"/>
                                     <outlet property="postImageView" destination="g0v-ke-v4a" id="Udx-3E-sII"/>
-                                    <segue destination="BEL-js-3zl" kind="show" id="eUz-q4-tvg"/>
+                                    <segue destination="BEL-js-3zl" kind="show" identifier="ToPostDetailTableviewController" id="eUz-q4-tvg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -113,13 +113,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Dyq-D1-E39">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="483"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="RFw-Lr-D8A">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="480"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GyK-fc-H6u">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GyK-fc-H6u" secondAttribute="height" multiplier="1:1" id="GzO-ec-M0l"/>
+                                            </constraints>
+                                        </imageView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="69H-FM-qmN">
+                                            <rect key="frame" x="0.0" y="450" width="414" height="30"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1W-B5-5xr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="30"/>
+                                                    <state key="normal" title="Comment"/>
+                                                    <connections>
+                                                        <action selector="commentButtonTapped:" destination="BEL-js-3zl" eventType="touchUpInside" id="thE-3B-oGj"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAw-fl-wNH">
+                                                    <rect key="frame" x="138" y="0.0" width="138" height="30"/>
+                                                    <state key="normal" title="Share"/>
+                                                    <connections>
+                                                        <action selector="shareButtonTapped:" destination="BEL-js-3zl" eventType="touchUpInside" id="uqg-Xl-8hH"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wZ-xX-Sde">
+                                                    <rect key="frame" x="276" y="0.0" width="138" height="30"/>
+                                                    <state key="normal" title="Follow"/>
+                                                    <connections>
+                                                        <action selector="followButtonTapped:" destination="BEL-js-3zl" eventType="touchUpInside" id="3V2-pB-tzW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="RFw-Lr-D8A" firstAttribute="centerY" secondItem="Dyq-D1-E39" secondAttribute="centerY" multiplier="0.8" id="Xw7-q7-qVj"/>
+                                <constraint firstItem="RFw-Lr-D8A" firstAttribute="centerX" secondItem="Dyq-D1-E39" secondAttribute="centerX" id="YRz-kJ-DQm"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Pd8-id-ppU">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostDetailCell" textLabel="TwE-tS-jUR" detailTextLabel="ldC-mX-hb1" style="IBUITableViewCellStyleSubtitle" id="Pd8-id-ppU">
+                                <rect key="frame" x="0.0" y="511" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pd8-id-ppU" id="MY5-oJ-VGj">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TwE-tS-jUR">
+                                            <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ldC-mX-hb1">
+                                            <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -128,10 +192,13 @@
                             <outlet property="delegate" destination="BEL-js-3zl" id="2D2-eM-0GJ"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="photoImageView" destination="GyK-fc-H6u" id="uTH-ba-DtZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p1l-aT-naK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3278" y="-542"/>
+            <point key="canvasLocation" x="3276.811594202899" y="-542.41071428571422"/>
         </scene>
         <!--Add Post Table View Controller-->
         <scene sceneID="6dW-8K-hIr">
