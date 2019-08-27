@@ -16,6 +16,7 @@
 		6307F1FE2315B570009D0BB3 /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F1FD2315B570009D0BB3 /* PostDetailTableViewController.swift */; };
 		6307F2002315B636009D0BB3 /* AddPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F1FF2315B636009D0BB3 /* AddPostTableViewController.swift */; };
 		6307F2032315B6AA009D0BB3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F2022315B6AA009D0BB3 /* Post.swift */; };
+		6307F2052315B913009D0BB3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F2042315B913009D0BB3 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		6307F1FD2315B570009D0BB3 /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
 		6307F1FF2315B636009D0BB3 /* AddPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTableViewController.swift; sourceTree = "<group>"; };
 		6307F2022315B6AA009D0BB3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		6307F2042315B913009D0BB3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				6307F2022315B6AA009D0BB3 /* Post.swift */,
+				6307F2042315B913009D0BB3 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6307F1E42315B047009D0BB3 /* AppDelegate.swift in Sources */,
+				6307F2052315B913009D0BB3 /* Comment.swift in Sources */,
 				6307F1FB2315B509009D0BB3 /* PostListTableViewController.swift in Sources */,
 				6307F2002315B636009D0BB3 /* AddPostTableViewController.swift in Sources */,
 				6307F1FE2315B570009D0BB3 /* PostDetailTableViewController.swift in Sources */,

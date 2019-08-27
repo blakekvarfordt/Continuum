@@ -24,6 +24,9 @@ class Post {
     }
     
     init(photo: UIImage?, caption: String, comments: [Comment] = [], timestamp: Date = Date()) {
-        
+        self.caption = caption
+        self.comments = comments
+        self.timestamp = timestamp
+        self.photo = photo
     }
 }
