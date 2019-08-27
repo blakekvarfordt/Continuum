@@ -17,6 +17,8 @@
 		6307F2002315B636009D0BB3 /* AddPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F1FF2315B636009D0BB3 /* AddPostTableViewController.swift */; };
 		6307F2032315B6AA009D0BB3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F2022315B6AA009D0BB3 /* Post.swift */; };
 		6307F2052315B913009D0BB3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F2042315B913009D0BB3 /* Comment.swift */; };
+		6307F2082315BBA4009D0BB3 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F2072315BBA4009D0BB3 /* PostController.swift */; };
+		6307F20B2315C244009D0BB3 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6307F20A2315C244009D0BB3 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		6307F1FF2315B636009D0BB3 /* AddPostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostTableViewController.swift; sourceTree = "<group>"; };
 		6307F2022315B6AA009D0BB3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6307F2042315B913009D0BB3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		6307F2072315BBA4009D0BB3 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		6307F20A2315C244009D0BB3 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +71,9 @@
 		6307F1E22315B047009D0BB3 /* Continuum */ = {
 			isa = PBXGroup;
 			children = (
+				6307F2092315C11D009D0BB3 /* Views */,
 				6307F1FC2315B50C009D0BB3 /* ViewControllers */,
+				6307F2062315BB6E009D0BB3 /* ModelControllers */,
 				6307F2012315B693009D0BB3 /* Models */,
 				6307F1F92315B3EA009D0BB3 /* Resources */,
 				6307F1F52315B1BB009D0BB3 /* Continuum.entitlements */,
@@ -112,6 +118,22 @@
 				6307F2042315B913009D0BB3 /* Comment.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		6307F2062315BB6E009D0BB3 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6307F2072315BBA4009D0BB3 /* PostController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+		6307F2092315C11D009D0BB3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6307F20A2315C244009D0BB3 /* PostTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +218,9 @@
 				6307F1E42315B047009D0BB3 /* AppDelegate.swift in Sources */,
 				6307F2052315B913009D0BB3 /* Comment.swift in Sources */,
 				6307F1FB2315B509009D0BB3 /* PostListTableViewController.swift in Sources */,
+				6307F20B2315C244009D0BB3 /* PostTableViewCell.swift in Sources */,
 				6307F2002315B636009D0BB3 /* AddPostTableViewController.swift in Sources */,
+				6307F2082315BBA4009D0BB3 /* PostController.swift in Sources */,
 				6307F1FE2315B570009D0BB3 /* PostDetailTableViewController.swift in Sources */,
 				6307F2032315B6AA009D0BB3 /* Post.swift in Sources */,
 			);
