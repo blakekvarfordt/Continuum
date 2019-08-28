@@ -8,32 +8,41 @@
 
 import UIKit
 
-class PostListTableViewController: UITableViewController {
-
+class PostListTableViewController: UITableViewController, UISearchBarDelegate {
+    
+    @IBOutlet weak var postSearchBar: UISearchBar!
+    
+    
+    var isSearching = false
+    var resultsArray = [Post]()
+    var dataSource: [Post] {
+        return isSearching ? resultsArray: PostController.shared.posts
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        postSearchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        resultsArray = PostController.shared.posts
     }
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PostController.shared.posts.count
+        return dataSource.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else { return UITableViewCell()}
-
-        let post = PostController.shared.posts[indexPath.row]
         
-        cell.postImageView.image = post.photo
-        cell.captionLabel.text = post.caption
-        cell.numberOfCommentsLabel.text = "\(post.comments.count)"
-
+        let post = dataSource[indexPath.row]
+        
+        cell.post = post
+        
         return cell
     }
     
@@ -46,5 +55,35 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
+    
+}
 
+
+extension PostListTableViewController {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var newResults: [Post] = []
+        guard let searchText = searchBar.text else { return }
+        for post in PostController.shared.posts {
+            if post.matches(searchTerm: searchText) {
+                newResults.append(post)
+            }
+    }
+        resultsArray = newResults
+        tableView.reloadData()
+  }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        postSearchBar.text = ""
+        postSearchBar.resignFirstResponder()
+        resultsArray = PostController.shared.posts
+        tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearching = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isSearching = false
+    }
 }
