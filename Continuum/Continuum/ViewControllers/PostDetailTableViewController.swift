@@ -25,14 +25,14 @@ class PostDetailTableViewController: UITableViewController {
     
     
     func updateViews() {
+        self.tableView.reloadData()
         guard let post = post else { return }
         photoImageView.image = post.photo
-        self.tableView.reloadData()
     }
     
     
     @IBAction func commentButtonTapped(_ sender: Any) {
-
+        postCommentAlert()
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
@@ -57,39 +57,39 @@ class PostDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailCell", for: indexPath)
 
         guard let post = self.post else { return UITableViewCell() }
+        let comment = post.comments[indexPath.row]
         
-        cell.textLabel?.text = "\(post.comments)"
-        cell.detailTextLabel?.text = "\(post.timestamp)"
+        cell.textLabel?.text = "\(comment.text)"
+        cell.detailTextLabel?.text = "\(comment.timestamp)"
 
         return cell
     }
     
     
-    func postCommentAlert(comment: Comment?) {
+    func postCommentAlert() {
         let alertController = UIAlertController(title: "New Comment", message: "What are your thoughts?", preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Type Comment Here!"
         }
         let addCommentAction = UIAlertAction(title: "Post Comment", style: .default) { (_) in
             
-            guard let comment = alertController.textFields?.first?.text else { return }
+            guard let comment = alertController.textFields?.first?.text, !comment.isEmpty else { return }
             guard let post = self.post else { return }
             
             if comment != "" {
                 PostController.shared.addComment(text: comment, post: post, completion: { (newComment) in
                     
-                    if newComment != nil {
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
                 })
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
         
         let alertCancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(alertCancelAction)
         alertController.addAction(addCommentAction)
+        present(alertController, animated: true)
     }
 
 }
