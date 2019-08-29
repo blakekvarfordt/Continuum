@@ -36,6 +36,9 @@ class PostDetailTableViewController: UITableViewController {
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
+        guard let postPhoto = post?.photo, let postCaption = post?.caption else { return }
+        let activityController = UIActivityViewController(activityItems: [postPhoto, postCaption], applicationActivities: nil)
+        present(activityController, animated: true)
         
     }
     
