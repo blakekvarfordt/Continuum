@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        checkAccountStatus { (success) in
+            let fetchedUserStatement = success ? "Successfully retrieved a logged in user" : "Failed to retrieve a logged in user."
+            print(fetchedUserStatement)
+        }
         return true
+    }
+    
+    func checkAccountStatus(completion: @escaping (Bool) -> Void) {
+        CKContainer.default().accountStatus { (status, error) in
+            
+            if let error = error {
+                print("Error with the account status in \(#function) \(error) \(error.localizedDescription)")
+                completion(false)
+                return
+            }
+            DispatchQueue.main.async {
+                let tabBarController = self.window?.rootViewController
+                let errorText = "Sign into iCloud in Settings."
+                
+                switch status {
+                case .available:
+                    completion(true);
+                case .noAccount:
+                    tabBarController?.presentSimpleAlertWith(title: errorText, message: "No account found")
+                    completion(false)
+                case .couldNotDetermine:
+                    tabBarController?.presentSimpleAlertWith(title: errorText, message: "There was an unknown error fetching your iCloud Account")
+                    completion(false)
+                case .restricted:
+                    tabBarController?.presentSimpleAlertWith(title: errorText, message: "Your iCloud accound is restricted")
+                    completion(false)
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -44,3 +77,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension UIViewController {
+    func presentSimpleAlertWith(title: String, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        alertController.addAction(okayAction)
+        present(alertController, animated: true)
+    }
+}
