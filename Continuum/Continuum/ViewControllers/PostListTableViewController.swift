@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class PostListTableViewController: UITableViewController, UISearchBarDelegate {
     
@@ -22,11 +23,22 @@ class PostListTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         postSearchBar.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadViews), name: PostController.shared.messagesWereUpdatedNotification, object: nil)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        PostController.shared.fetchPosts { (_) in
+            
+        }
     }
-    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tableView.reloadData()
         resultsArray = PostController.shared.posts
+    }
+    @objc func reloadViews() {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -55,6 +67,10 @@ class PostListTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    func syncOperation(completion: @escaping (Bool) -> Void) {
+        
+        
+    }
     
 }
 

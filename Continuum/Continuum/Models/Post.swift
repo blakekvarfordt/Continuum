@@ -16,9 +16,11 @@ struct PostStrings {
     static let captionKey = "Captoin"
     static let timestampKey = "Timestamp"
     static let imageAssetKey = "Photo"
+    static let commentCountKey = "CommentCount"
 }
 
 class Post {
+    let commentCount: Int
     let timestamp: Date
     let caption: String
     var comments: [Comment]
@@ -47,7 +49,8 @@ class Post {
         }
     }
     
-    init(photo: UIImage?, caption: String, comments: [Comment] = [], timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+    init(commentCount: Int, photo: UIImage?, caption: String, comments: [Comment] = [], timestamp: Date = Date(), recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)) {
+        self.commentCount = commentCount
         self.caption = caption
         self.comments = comments
         self.timestamp = timestamp
@@ -58,8 +61,10 @@ class Post {
     init?(ckRecord: CKRecord) {
         guard let imageAsset = ckRecord[PostStrings.imageAssetKey] as? CKAsset,
             let caption = ckRecord[PostStrings.captionKey] as? String,
-            let timestamp = ckRecord[PostStrings.timestampKey] as? Date else { return nil }
-
+            let timestamp = ckRecord[PostStrings.timestampKey] as? Date,
+            let commentCount = ckRecord[PostStrings.commentCountKey] as? Int else { return nil }
+        
+        self.commentCount = commentCount
         self.caption = caption
         self.timestamp = timestamp
         self.comments = []
