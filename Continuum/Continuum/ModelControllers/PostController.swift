@@ -103,7 +103,16 @@ class PostController {
         }
     }
     
-    func modifyRecordsOperation() {
+    func modifyRecordsOperation(post: Post, completion: @escaping (Bool) -> Void) {
+        let operation = CKModifyRecordsOperation()
+        operation.recordsToSave = [CKRecord(post: post)]
+        operation.savePolicy = .changedKeys
+        operation.qualityOfService = .userInteractive
+        operation.queuePriority = .high
+        operation.completionBlock = {
+            completion(true)
+        }
+        publicDB.add(operation)
         
     }
     
